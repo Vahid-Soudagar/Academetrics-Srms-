@@ -4,8 +4,11 @@
  */
 package result_management_system;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,9 @@ public class AdminIndex extends javax.swing.JFrame {
     /**
      * Creates new form AdminIndex
      */
+    
+    private boolean pasVis = false;
+    
     public AdminIndex() {
         initComponents();
     }
@@ -38,7 +44,6 @@ public class AdminIndex extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         userId = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
-        showHide = new javax.swing.JButton();
         back = new javax.swing.JButton();
         login = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -79,15 +84,6 @@ public class AdminIndex extends javax.swing.JFrame {
         password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 40));
 
-        showHide.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        showHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/result_management_system/show.png"))); // NOI18N
-        showHide.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showHideActionPerformed(evt);
-            }
-        });
-        getContentPane().add(showHide, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 50, 40));
-
         back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/result_management_system/previous.png"))); // NOI18N
         back.setText("Back");
@@ -119,10 +115,6 @@ public class AdminIndex extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_userIdActionPerformed
-
-    private void showHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showHideActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showHideActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
@@ -169,7 +161,6 @@ public class AdminIndex extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
-    private javax.swing.JButton showHide;
     private javax.swing.JTextField userId;
     // End of variables declaration//GEN-END:variables
 }
