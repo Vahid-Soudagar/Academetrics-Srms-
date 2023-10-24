@@ -10,6 +10,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
@@ -20,6 +21,12 @@ public class AdminIndex extends javax.swing.JFrame {
     /**
      * Creates new form AdminIndex
      */
+    
+    final String URL = "jdbc:mysql://localhost:3306/";
+    final String DATABASE_NAME = "srms";
+    final String USERS_TABLE = "users";
+    final String USER = "root";
+    final String PASSWORD = "90041";
     
     private boolean pasVis = false;
     
@@ -124,14 +131,35 @@ public class AdminIndex extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        String userId = this.userId.getText();
+        String username = this.userId.getText();
         String password = this.password.getText();
         
-        if (userId.equals("admin") && password.equals("pass")) {
-            setVisible(false);
-            new AdminHome().setVisible(true);
+        if (!username.isEmpty() && !password.isEmpty()) {
+            try {
+                Connection c = DriverManager.getConnection(URL+DATABASE_NAME, USER, PASSWORD);
+                String query = "SELECT * FROM "+USERS_TABLE+" WHERE username = ?";
+                PreparedStatement preparedStatement = c.prepareStatement(query);
+                preparedStatement.setString(1, username);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next()) {
+                    if (rs.getString("password").equals(password)) {
+                        setVisible(false);
+                        new AdminHome().setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Incorrect Password");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "User not found");
+                }
+           } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage()+" try after sometime");
+           } 
+        } else if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter username");
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter Password");
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid Credentials");
+            JOptionPane.showMessageDialog(null, "Please Enter username and password");
         }
     }//GEN-LAST:event_loginActionPerformed
 
