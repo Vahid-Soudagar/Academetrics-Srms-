@@ -1,4 +1,4 @@
-# Student Result Management System
+# Academetrics (SRMS)
 
 ## Table of Contents
 1. [Project Description](#project-description)
